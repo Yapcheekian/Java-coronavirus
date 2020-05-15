@@ -1,38 +1,28 @@
 package com.yap.coronavirustracker.models;
 
 public class LocationStats {
-  private String state;
   private String country;
   private int latestTotalCases;
 
-  public String state() {
-    return state;
-  }
-
-  public void state(String state) {
-    this.state = state;
-  }
-
-  public String country() {
+  public String getCountry() {
     return country;
   }
 
-  public void country(String country) {
+  public void setCountry(String country) {
     this.country = country;
   }
 
-  public int latestTotalCases() {
+  public int getLatestTotalCases() {
     return latestTotalCases;
   }
 
-  public void latestTotalCases(int latestTotalCases) {
+  public void setLatestTotalCases(int latestTotalCases) {
     this.latestTotalCases = latestTotalCases;
   }
 
   @Override
   public String toString() {
     return "LocationStats{" +
-           "state='" + state + '\'' +
            ", country='" + country + '\'' +
            ", latestTotalCases=" + latestTotalCases +
            '}';

@@ -22,7 +22,7 @@ import javax.annotation.PostConstruct;
 public class CoronaVirusDataService {
 
   private static String VIRUS_DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
-  private List<LocationStats> allStats = new ArrayList<>();
+  public List<LocationStats> allStats = new ArrayList<>();
 
   @PostConstruct
   @Scheduled(cron= "* * 1 * * *")
@@ -38,9 +38,8 @@ public class CoronaVirusDataService {
     Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReader);
     for (CSVRecord record : records) {
       LocationStats locationStat = new LocationStats();
-      locationStat.state(record.get("Province/State"));
-      locationStat.country(record.get("Country/Region"));
-      locationStat.latestTotalCases(Integer.parseInt(record.get(record.size() - 1)));
+      locationStat.setCountry(record.get("Country/Region"));
+      locationStat.setLatestTotalCases(Integer.parseInt(record.get(record.size() - 1)));
       newStats.add(locationStat);
     }
     allStats = newStats;
